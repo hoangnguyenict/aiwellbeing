@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Em làm chủ tương tác với AI | Khối 5</title>
+<style>
+:root{--ink:#19304b;--muted:#61748e;--blue:#315ee8;--blue2:#eaf0ff;--line:#dce5f2;--bg:#f5f8fe;--white:#fff;--green:#14835c;--shadow:0 16px 45px rgba(32,66,120,.08)}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 8% 5%,#e8f1ff 0,transparent 32%),radial-gradient(circle at 93% 8%,#e8eaff 0,transparent 25%),var(--bg);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);line-height:1.55}.app{max-width:1050px;margin:30px auto 70px;padding:0 18px}.hero{background:linear-gradient(116deg,#1948ba,#4e65d8 60%,#765bd0);color:white;border-radius:24px;padding:31px 35px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"✦";position:absolute;right:42px;top:0;color:#ffffff22;font-size:180px;line-height:1}.eyebrow{font-size:12px;letter-spacing:1.8px;font-weight:800;opacity:.9}.hero h1{font-size:clamp(25px,4vw,39px);line-height:1.2;margin:12px 0 10px;max-width:720px}.design-credit{display:inline-block;margin:0 0 16px;padding:5px 12px;border:1px solid rgba(255,255,255,.3);border-radius:999px;background:rgba(255,255,255,.13);color:#eff3ff;font-size:12px;font-weight:650;letter-spacing:.2px}.hero p{margin:0;max-width:730px;color:#e7edff}.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}.chip{background:#ffffff24;border:1px solid #ffffff47;padding:5px 12px;border-radius:20px;font-size:13px;font-weight:600}.panel{background:white;border:1px solid var(--line);border-radius:19px;padding:24px;margin-top:18px;box-shadow:var(--shadow)}.intro{display:flex;gap:13px;align-items:flex-start}.intro-icon{background:var(--blue2);border-radius:12px;padding:10px;font-size:24px}.intro h2{font-size:18px;margin:0 0 4px}.intro p{margin:0;color:var(--muted);font-size:14px}.tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.tab{cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:13px;padding:15px;font:inherit;font-weight:800;color:var(--muted);text-align:center}.tab.active{border-color:var(--blue);background:var(--blue2);color:#214bbc;box-shadow:inset 0 -3px #4564dc}.section-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}.section-header h2{font-size:21px;margin:0}.pill{background:#edf1f7;color:#53647b;border-radius:20px;padding:5px 10px;font-size:12px;font-weight:800;white-space:nowrap}.help{font-size:15px;color:var(--muted);margin:0 0 18px}.count{font-weight:800;margin:0 0 12px;color:#284b9d;font-size:14px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.case{position:relative;text-align:left;border:1.5px solid var(--line);border-radius:15px;padding:16px;min-height:128px;background:#fff;font:inherit;cursor:pointer;color:var(--ink);transition:.18s;display:flex;flex-direction:column;align-items:flex-start;gap:11px}.case:hover{border-color:#7896e9;transform:translateY(-1px)}.case.selected{background:#f0f4ff;border-color:#3d67e8;box-shadow:inset 0 0 0 1px #3d67e8}.case:focus-visible,.tab:focus-visible,button:focus-visible,textarea:focus-visible,input:focus-visible{outline:3px solid #91adff;outline-offset:2px}.case-num{background:#edf1ff;color:#365bd0;border-radius:7px;padding:2px 9px;font-size:12px;font-weight:800}.case-title{font-weight:750;line-height:1.35}.case-mark{position:absolute;right:13px;top:14px;color:#8b9aaf;font-size:21px}.case.selected .case-mark{color:#305ddd}.subheading{margin:23px 0 13px;font-size:18px}.response-card{border:1px solid var(--line);border-radius:17px;padding:20px;margin:14px 0;background:#fff}.response-title{display:flex;align-items:center;gap:8px;font-weight:800;margin-bottom:10px}.story{background:#f3f6fb;border-left:4px solid #6385ef;padding:14px 16px;border-radius:9px;color:#33445d;margin:0 0 16px}.field{margin-top:15px}.field label{display:block;font-weight:750;margin-bottom:8px;font-size:14px}.field textarea{width:100%;min-height:85px;overflow-y:hidden;resize:none;border:1.5px solid #cad6e9;border-radius:11px;padding:12px 13px;font:inherit;font-size:14px;color:var(--ink);background:#fff}.field textarea:focus{border-color:#456cdd;outline:3px solid #e7edff}.buttons{display:flex;justify-content:space-between;gap:10px;margin-top:20px;flex-wrap:wrap}.btn{border:0;border-radius:11px;padding:12px 19px;font:inherit;font-size:14px;font-weight:800;cursor:pointer;background:var(--blue);color:white}.btn:hover{filter:brightness(.96)}.btn.secondary{background:#eaf0ff;color:#3154b7}.btn:disabled{background:#c8d2e2;cursor:not-allowed;color:#657389}.note{color:var(--muted);font-size:13px;margin:10px 0 0}.choices{display:grid;gap:9px;margin-top:8px}.radio{border:1px solid var(--line);padding:12px;border-radius:10px;display:flex;gap:9px;align-items:center;cursor:pointer}.radio:has(input:checked){border-color:#5574e1;background:#eef3ff}.radio input{accent-color:var(--blue)}.reflection{border-top:1px solid var(--line);margin-top:20px;padding-top:17px}.reflection h3{margin:0 0 9px}.summary{background:#eaf8f1;border:1px solid #b9e8d2;border-radius:14px;padding:17px;margin-top:17px}.summary h3{margin:0 0 5px;color:#116744}.summary p{margin:0 0 12px}.summary ul{padding-left:20px;font-size:14px}.small{font-size:13px;color:var(--muted)}.student-panel{padding-top:18px}.student-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px}.field-inline label{display:block;font-weight:750;margin-bottom:8px;font-size:14px}.field-inline input{width:100%;border:1.5px solid #cad6e9;border-radius:11px;padding:12px 13px;font:inherit;font-size:14px;color:var(--ink);background:#fff}.field-inline input:focus{border-color:#456cdd;outline:3px solid #e7edff}@media(max-width:760px){.student-grid{grid-template-columns:1fr}}[hidden]{display:none!important}.footer{text-align:center;color:#718199;font-size:12px;margin-top:20px}.toast{position:fixed;right:20px;bottom:18px;background:#1b365a;color:#fff;border-radius:12px;padding:12px 17px;box-shadow:var(--shadow);z-index:3;display:none}.toast.on{display:block}@media(max-width:760px){.cards{grid-template-columns:repeat(2,1fr)}.hero{padding:25px}.panel{padding:18px}}@media(max-width:470px){.cards{grid-template-columns:1fr}.tabs{gap:6px}.tab{padding:10px 7px;font-size:12px}.hero h1{font-size:26px}.section-header{align-items:flex-start}.section-header h2{font-size:19px}}@media print{body{background:white}.app{max-width:none;margin:0}.hero,.tabs,.buttons,.case,.count,.help,.footer{display:none!important}.panel{border:0;box-shadow:none;padding:0}.response-card{break-inside:avoid}textarea{border:0!important;min-height:40px!important}#tab2{display:block!important}}
+</style>
+</head>
+<body>
+<main class="app">
+<header class="hero"><div class="eyebrow">BÀI THỰC HÀNH AI · KHỐI 5</div><h1>EM LÀM CHỦ TƯƠNG TÁC VỚI AI</h1><div class="design-credit">Thiết kế: Hoangntm2 - VSC Tih Times City</div><p>Nhận diện những tương tác có thể gây ảnh hưởng không tốt và tìm cách sử dụng AI lành mạnh, có trách nhiệm.</p><div class="chips"><span class="chip">⏱ 20–25 phút</span><span class="chip">6 tình huống</span><span class="chip">2 hoạt động</span></div></header>
+<div class="panel intro"><div class="intro-icon">🔎</div><div><h2>Nhiệm vụ của em</h2><p>Chọn <strong>2 trong 6 tình huống</strong> để nhận diện và phân tích. Sau đó chọn <strong>1 trong 2 tình huống</strong> đã làm để đề xuất cách ứng xử và rút ra bài học.</p></div></div><section class="panel student-panel"><div class="student-grid"><div class="field-inline"><label for="studentName">Họ và tên học sinh</label><input id="studentName" type="text" placeholder="Nhập họ và tên"/></div><div class="field-inline"><label for="studentClass">Lớp</label><input id="studentClass" type="text" placeholder="Ví dụ: 5A1"/></div><div class="field-inline"><label for="workDate">Ngày làm bài</label><input id="workDate" type="date"/></div></div><p class="small" style="margin-top:10px">Thông tin này sẽ xuất hiện trên ảnh PNG khi tải bài làm.</p></section>
+<nav class="tabs" aria-label="Chọn hoạt động"><button class="tab active" id="nav1" aria-current="step" onclick="go(1)">01 · Nhận diện & phân tích</button><button class="tab" id="nav2" onclick="go(2)">02 · Ứng xử & suy ngẫm</button></nav>
+<section class="panel" id="tab1"><div class="section-header"><h2>🔍 Hoạt động 1 · Thám tử AI</h2><span class="pill">8–10 phút</span></div><p class="help">Đọc tên 6 tình huống và <strong>chọn 2 tình huống bất kỳ</strong>. Sau đó đọc nội dung chi tiết và trả lời 2 câu hỏi cho mỗi tình huống.</p><p class="count" id="count">Đã chọn: 0/2 tình huống</p><div class="cards" id="cards"></div><div id="answers"></div><div class="buttons"><span></span><button class="btn" id="next" disabled onclick="go(2)">Tiếp tục: Hoạt động 2 →</button></div><p class="note" id="nextnote">Hãy chọn đủ 2 tình huống và trả lời đầy đủ các câu hỏi.</p></section>
+<section class="panel" id="tab2" hidden><div class="section-header"><h2>💡 Hoạt động 2 · Em làm chủ AI</h2><span class="pill">10–12 phút</span></div><p class="help">Chọn <strong>1 trong 2 tình huống</strong> em đã phân tích ở Hoạt động 1. Đề xuất cách giải quyết và giải thích suy nghĩ của em.</p><div id="focuschoices" class="choices"></div><div id="focusedstory"></div><div class="field"><label for="action">1. Nếu là nhân vật trong tình huống, em sẽ làm gì để hạn chế ảnh hưởng tiêu cực?</label><textarea id="action" placeholder="Nếu là bạn ấy, em sẽ..."></textarea></div><div class="field"><label for="reason">2. Vì sao em lựa chọn cách giải quyết đó?</label><textarea id="reason" placeholder="Em chọn cách này vì..."></textarea></div><div class="reflection"><h3>🌱 Góc suy ngẫm của em</h3><div class="field"><label for="lesson">Sau khi tìm hiểu các tình huống, em rút ra bài học gì để sử dụng AI mà vẫn bảo vệ được cảm xúc, sự tự tin và các mối quan hệ của mình?</label><textarea id="lesson" placeholder="Bài học em rút ra là..."></textarea></div></div><div class="buttons"><button class="btn secondary" onclick="go(1)">← Quay lại Hoạt động 1</button><button class="btn" id="finish" disabled onclick="finish()">✓ Kiểm tra hoàn thành</button></div><div id="result" hidden class="summary"><h3>✅ Em đã điền đủ các phần!</h3><p>Hãy tự đọc lại câu trả lời trước khi nộp bài:</p><ul><li>Em đã chỉ ra ảnh hưởng tiêu cực ở cả 2 tình huống.</li><li>Em đã giải thích bằng chi tiết cụ thể trong tình huống.</li><li>Em đã đưa ra cách ứng xử phù hợp và nêu lý do.</li><li>Em đã rút ra một bài học cho bản thân.</li></ul><div class="buttons"><button class="btn" onclick="downloadWork()">⬇ Tải bài làm (.png)</button></div><p class="small">Bài làm sẽ được tải xuống dưới dạng hình ảnh PNG để nộp cho giáo viên.</p></div></section>
+<p class="footer">AI · KHỐI 5 — Học sinh tự suy nghĩ và đưa ra lựa chọn. Bài làm được lưu trên thiết bị này.</p>
+</main><div class="toast" id="toast" role="status"></div>
+<script>
+const scenarios=[
+{id:1,title:'AI chê bài làm của em',story:'Minh nhờ AI nhận xét bài văn của mình. AI trả lời: “Bài viết này chưa tốt, em cần cố gắng nhiều hơn.” Minh cảm thấy buồn, nghĩ rằng mình viết văn rất kém và không còn muốn làm bài tập viết nữa.'},
+{id:2,title:'AI luôn khen em giỏi nhất',story:'Mỗi khi làm xong bài tập, An lại hỏi AI: “Mình có thông minh không?” AI thường trả lời: “Bạn rất thông minh, bạn giỏi nhất!” Dần dần, An chỉ cảm thấy vui và tự tin khi được AI khen. Nếu chưa nhận được lời khen, An thường lo lắng.'},
+{id:3,title:'AI là người bạn duy nhất?',story:'Hà thích trò chuyện với AI vì AI luôn trả lời ngay và không bao giờ bận. Gần đây, Hà thường từ chối lời rủ đi chơi của bạn bè, ít trò chuyện với bố mẹ và dành hầu hết thời gian rảnh để tâm sự với AI.'},
+{id:4,title:'AI khiến em lo lắng',story:'Trước một bài kiểm tra, Tuấn hỏi AI: “Nếu mình bị điểm thấp thì tương lai sẽ thế nào?” AI đưa ra nhiều hậu quả đáng sợ có thể xảy ra. Tuấn tin rằng những điều AI nói chắc chắn sẽ thành sự thật, khiến bạn lo lắng và khó ngủ.'},
+{id:5,title:'Em không thể học nếu thiếu AI',story:'Linh có thói quen hỏi AI trước khi làm bất cứ bài tập nào. Một hôm, mạng Internet bị mất. Mặc dù đã học kiến thức trong bài, Linh vẫn không dám tự làm vì sợ mình sẽ trả lời sai nếu không có AI hướng dẫn.'},
+{id:6,title:'Bức ảnh hoàn hảo của AI',story:'Phương xem nhiều hình ảnh chân dung rất đẹp do AI tạo ra trên mạng. Phương bắt đầu so sánh khuôn mặt của mình với những bức ảnh ấy và cảm thấy bản thân không xinh đẹp. Bạn dần ngại chụp ảnh cùng các bạn trong lớp.'}
+];
+const KEY='ai-wellbeing-grade5-v3';let state={selected:[],answers:{},focus:null,action:'',reason:'',lesson:'',studentName:'',studentClass:'',workDate:''};try{const saved=JSON.parse(localStorage.getItem(KEY));if(saved&&Array.isArray(saved.selected)){state={...state,...saved,selected:saved.selected.filter(id=>scenarios.some(s=>s.id===id)).slice(0,2)}}}catch(e){}
+function resizeAnswer(el){
+  if(!el || el.tagName!=='TEXTAREA')return;
+  el.style.height='auto';
+  el.style.height=Math.max(85,el.scrollHeight+2)+'px';
+}
+function resizeAllAnswers(){document.querySelectorAll('textarea').forEach(resizeAnswer)}
+document.addEventListener('input',e=>{if(e.target.matches('textarea'))resizeAnswer(e.target)});
+window.addEventListener('resize',resizeAllAnswers);
+const $=id=>document.getElementById(id);const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+function toggle(id){if(state.selected.includes(id)){state.selected=state.selected.filter(x=>x!==id)}else if(state.selected.length<2){state.selected.push(id)}else{toast('Em chỉ được chọn 2 tình huống. Hãy bỏ chọn một tình huống trước.');return}if(!state.selected.includes(state.focus))state.focus=state.selected[0]||null;save();render1();render2()}
+function render1(){ $('cards').innerHTML=scenarios.map(s=>`<button type="button" class="case ${state.selected.includes(s.id)?'selected':''}" aria-pressed="${state.selected.includes(s.id)}" onclick="toggle(${s.id})"><span class="case-num">TH ${String(s.id).padStart(2,'0')}</span><span class="case-title">${esc(s.title)}</span><span class="case-mark">${state.selected.includes(s.id)?'●':'○'}</span></button>`).join('');$('count').textContent=`Đã chọn: ${state.selected.length}/2 tình huống`;$('answers').innerHTML=state.selected.length?'<h3 class="subheading">Phân tích các tình huống em đã chọn</h3>'+state.selected.map(id=>{const s=scenarios.find(x=>x.id===id),a=state.answers[id]||{};return `<article class="response-card"><div class="response-title"><span class="case-num">TÌNH HUỐNG ${id}</span>${esc(s.title)}</div><p class="story">${esc(s.story)}</p><div class="field"><label for="impact${id}">1. Theo em, tương tác với AI trong tình huống này có thể gây ra ảnh hưởng tiêu cực gì?</label><textarea id="impact${id}" oninput="setAnswer(${id},'impact',this.value)" placeholder="Em nhận thấy...">${esc(a.impact)}</textarea></div><div class="field"><label for="proof${id}">2. Vì sao em nghĩ như vậy? Chi tiết nào trong tình huống giúp em nhận ra điều đó?</label><textarea id="proof${id}" oninput="setAnswer(${id},'proof',this.value)" placeholder="Em nghĩ như vậy vì...">${esc(a.proof)}</textarea></div></article>`}).join(''):'';validate();requestAnimationFrame(resizeAllAnswers)}
+function setAnswer(id,key,value){if(!state.answers[id])state.answers[id]={};state.answers[id][key]=value;save();validate()}
+function ready1(){return state.selected.length===2&&state.selected.every(id=>(state.answers[id]?.impact||'').trim()&&(state.answers[id]?.proof||'').trim())}
+function validate(){$('next').disabled=!ready1();$('nextnote').hidden=ready1();$('finish').disabled=!(ready1()&&state.focus&&state.action.trim()&&state.reason.trim()&&state.lesson.trim())}
+function render2(){if(!state.selected.includes(state.focus))state.focus=state.selected[0]||null;$('focuschoices').innerHTML=state.selected.map(id=>{const s=scenarios.find(x=>x.id===id);return `<label class="radio"><input type="radio" name="focus" value="${id}" ${state.focus===id?'checked':''} onchange="changeFocus(${id})"><span>TH ${id} – ${esc(s.title)}</span></label>`}).join('');renderStory();validate()}
+function renderStory(){const s=scenarios.find(x=>x.id===state.focus);$('focusedstory').innerHTML=s?`<p class="story" style="margin-top:15px"><strong>Tình huống ${s.id}:</strong> ${esc(s.story)}</p>`:''}
+function changeFocus(id){state.focus=id;$('result').hidden=true;save();renderStory();validate()}
+function go(num){if(num===2&&!ready1()){toast('Hãy hoàn thành câu hỏi của 2 tình huống ở Hoạt động 1 trước.');return}const one=num===1;$('tab1').hidden=!one;$('tab2').hidden=one;requestAnimationFrame(resizeAllAnswers);$('nav1').classList.toggle('active',one);$('nav2').classList.toggle('active',!one);$('nav1').setAttribute('aria-current',one?'step':'false');$('nav2').setAttribute('aria-current',!one?'step':'false');window.scrollTo({top:Math.max(0,document.querySelector('.tabs').getBoundingClientRect().top+window.scrollY-12),behavior:'smooth'})}
+['action','reason','lesson'].forEach(id=>{$(id).value=state[id]||'';$(id).addEventListener('input',e=>{state[id]=e.target.value;$('result').hidden=true;save();validate()})});
+['studentName','studentClass','workDate'].forEach(id=>{$(id).value=state[id]||'';$(id).addEventListener('input',e=>{state[id]=e.target.value;save();})});
+if(!$('workDate').value){const d=new Date();const mm=String(d.getMonth()+1).padStart(2,'0');const dd=String(d.getDate()).padStart(2,'0');$('workDate').value=`${d.getFullYear()}-${mm}-${dd}`;state.workDate=$('workDate').value;save();}
+function requireStudentInfo(actionLabel){
+  const name=$('studentName').value.trim();
+  const studentClass=$('studentClass').value.trim();
+  if(!name||!studentClass){
+    const missing=[];
+    if(!name)missing.push('HỌ VÀ TÊN');
+    if(!studentClass)missing.push('LỚP');
+    alert('THÔNG BÁO\n\nHọc sinh cần nhập đầy đủ thông tin HỌ VÀ TÊN và LỚP trước khi '+actionLabel+'.\n\nThông tin còn thiếu: '+missing.join(' và ')+'.\n\nEm hãy bổ sung thông tin rồi nhấn lại nút '+(actionLabel==='kiểm tra hoàn thành'?'Kiểm tra hoàn thành':'Tải bài làm (.png)')+'.');
+    const field=!name?$('studentName'):$('studentClass');
+    field.scrollIntoView({behavior:'smooth',block:'center'});
+    field.focus({preventScroll:true});
+    return false;
+  }
+  state.studentName=name;
+  state.studentClass=studentClass;
+  save();
+  return true;
+}
+function finish(){
+  if($('finish').disabled)return;
+  if(!requireStudentInfo('kiểm tra hoàn thành'))return;
+  $('result').hidden=false;
+  $('result').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function workText(){return ['BÀI THỰC HÀNH – EM LÀM CHỦ TƯƠNG TÁC VỚI AI','Môn AI – Khối 5','', 'HOẠT ĐỘNG 1: NHẬN DIỆN & PHÂN TÍCH',...state.selected.map(id=>{const s=scenarios.find(x=>x.id===id),a=state.answers[id]||{};return `\nTình huống ${id}: ${s.title}\nNội dung: ${s.story}\n1. Ảnh hưởng tiêu cực: ${a.impact||''}\n2. Giải thích và chi tiết: ${a.proof||''}`}), '', 'HOẠT ĐỘNG 2: ỨNG XỬ & SUY NGẪM',`Tình huống lựa chọn: ${state.focus} – ${scenarios.find(x=>x.id===state.focus)?.title||''}`,`1. Cách ứng xử: ${state.action}`,`2. Lý do: ${state.reason}`,`Bài học rút ra: ${state.lesson}`].join('\n')}
+function getWrappedLines(ctx,text,maxWidth){
+  const raw=(text||'').toString().replace(/\r/g,'').split('\n');
+  const lines=[];
+  raw.forEach(par=>{
+    const p=par.trim();
+    if(!p){lines.push('');return}
+    const words=p.split(/\s+/); let line='';
+    words.forEach(word=>{
+      const test=line?line+' '+word:word;
+      if(ctx.measureText(test).width<=maxWidth){line=test}
+      else{
+        if(line) lines.push(line);
+        if(ctx.measureText(word).width<=maxWidth){line=word}
+        else{
+          let chunk='';
+          for(const ch of word){
+            const t=chunk+ch;
+            if(ctx.measureText(t).width<=maxWidth) chunk=t;
+            else{ if(chunk) lines.push(chunk); chunk=ch; }
+          }
+          line=chunk;
+        }
+      }
+    });
+    if(line) lines.push(line);
+  });
+  return lines.length?lines:[''];
+}
+function drawWrappedText(ctx,text,x,y,maxWidth,lineHeight){
+  const lines=getWrappedLines(ctx,text,maxWidth);
+  lines.forEach((line,i)=>ctx.fillText(line,x,y+i*lineHeight));
+  return y+lines.length*lineHeight;
+}
+function sectionCardHeight(ctx,scenario,answer,contentWidth){
+  const pad=24, inner=contentWidth-pad*2; let h=pad;
+  ctx.font='700 18px system-ui, Segoe UI, Arial, sans-serif'; h+=30;
+  ctx.font='400 20px system-ui, Segoe UI, Arial, sans-serif'; h+=getWrappedLines(ctx,`Nội dung: ${scenario.story}`,inner).length*31 + 16;
+  ctx.font='700 18px system-ui, Segoe UI, Arial, sans-serif'; h+=30;
+  ctx.font='400 20px system-ui, Segoe UI, Arial, sans-serif'; h+=getWrappedLines(ctx,answer.impact||'',inner).length*31 + 16;
+  ctx.font='700 18px system-ui, Segoe UI, Arial, sans-serif'; h+=30;
+  ctx.font='400 20px system-ui, Segoe UI, Arial, sans-serif'; h+=getWrappedLines(ctx,answer.proof||'',inner).length*31 + 16;
+  return h+pad;
+}
+function simpleCardHeight(ctx,bodyLines,contentWidth){
+  const pad=24, inner=contentWidth-pad*2; let h=pad;
+  ctx.font='700 18px system-ui, Segoe UI, Arial, sans-serif'; h+=30;
+  bodyLines.forEach(([font,text])=>{ctx.font=font; h+=getWrappedLines(ctx,text,inner).length*31 + 16;});
+  return h+pad;
+}
+function downloadWork(){
+  if(!requireStudentInfo('tải bài làm'))return;
+  if(!ready1() || !state.focus || !state.action.trim() || !state.reason.trim() || !state.lesson.trim()){
+    alert('THÔNG BÁO\n\nEm cần hoàn thành cả 2 hoạt động trước khi tải bài làm.');
+    return;
+  }
+  const canvas=document.createElement('canvas');
+  const ctx=canvas.getContext('2d');
+  const W=1500, M=62, CW=W-2*M;
+  const focusScenario=scenarios.find(s=>s.id===state.focus);
+  const colors={ink:'#19304b',muted:'#61748e',blue:'#315ee8',blueDark:'#214bbc',line:'#dce5f2',bg:'#f5f8fe',soft:'#f3f6fb',white:'#ffffff',answer:'#cad6e9'};
+  const font=(weight,size)=>`${weight} ${size}px system-ui,-apple-system,"Segoe UI",Arial,sans-serif`;
+  const safeFilePart=value=>String(value).trim().replace(/[\\/:*?"<>|\x00-\x1f]/g,'').replace(/\s+/g,' ').replace(/[. ]+$/g,'');
+  const dateText=state.workDate?state.workDate.split('-').reverse().join('/'):'—';
+  const textLines=(text,maxW,f)=>{
+    ctx.font=f;
+    let lines=[];
+    for(const paragraph of String(text??'').replace(/\r/g,'').split('\n')){
+      if(!paragraph.trim()){lines.push('');continue;}
+      let line='';
+      for(const word of paragraph.trim().split(/\s+/)){
+        const attempt=line?`${line} ${word}`:word;
+        if(ctx.measureText(attempt).width<=maxW){line=attempt;continue;}
+        if(line){lines.push(line);line='';}
+        let segment='';
+        for(const ch of word){
+          if(ctx.measureText(segment+ch).width>maxW && segment){lines.push(segment);segment='';}
+          segment+=ch;
+        }
+        line=segment;
+      }
+      if(line)lines.push(line);
+    }
+    return lines.length?lines:[''];
+  };
+  function rect(x,y,w,h,r,fill,stroke){
+    ctx.beginPath();ctx.roundRect(x,y,w,h,r);
+    if(fill){ctx.fillStyle=fill;ctx.fill();}
+    if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke();}
+  }
+  function txt(text,x,y,w,size=21,weight=400,color=colors.ink,lh=size*1.5,paint=true){
+    const f=font(weight,size),lines=textLines(text,w,f);
+    if(paint){ctx.font=f;ctx.fillStyle=color;ctx.textBaseline='top';lines.forEach((line,i)=>ctx.fillText(line,x,y+i*lh));}
+    return lines.length*lh;
+  }
+  function render(paint){
+    let y=M;
+    if(paint){
+      const gradient=ctx.createLinearGradient(0,0,W,0);gradient.addColorStop(0,'#1948ba');gradient.addColorStop(0.65,'#4e65d8');gradient.addColorStop(1,'#765bd0');
+      ctx.fillStyle=colors.bg;ctx.fillRect(0,0,W,canvas.height);
+      rect(M,y,CW,202,25,gradient);
+    }
+    txt('BÀI THỰC HÀNH AI · KHỐI 5',M+36,y+22,CW-72,17,700,'#dde8ff',25,paint);
+    txt('EM LÀM CHỦ TƯƠNG TÁC VỚI AI',M+36,y+57,CW-72,42,800,'#ffffff',54,paint);
+    txt('Nhận diện những tương tác có thể gây ảnh hưởng không tốt và tìm cách sử dụng AI lành mạnh.',M+36,y+117,CW-72,19,400,'#edf2ff',28,paint);
+    txt('Thiết kế: Hoangntm2 - VSC Tih Times City',M+36,y+157,CW-72,18,600,'#ffffff',27,paint);
+    y+=222;
+
+    // Form-like student details panel with three bordered input fields.
+    const infoH=132;
+    if(paint)rect(M,y,CW,infoH,20,colors.white,colors.line);
+    const infoY=y+22, gap=18, inside=CW-48;
+    const widths=[inside*.49,inside*.18,inside*.33-gap*2];
+    let ix=M+24;
+    for(const [label,value,w] of [['Họ và tên học sinh',state.studentName.trim(),widths[0]],['Lớp',state.studentClass.trim(),widths[1]],['Ngày làm bài',dateText,widths[2]]]){
+      txt(label,ix,infoY,w,17,700,colors.ink,24,paint);
+      if(paint)rect(ix,infoY+29,w,55,10,colors.white,colors.answer);
+      txt(value,ix+13,infoY+43,w-26,20,500,colors.ink,29,paint);
+      ix+=w+gap;
+    }
+    y+=infoH+28;
+
+    const activity=(num,title,subtitle)=>{
+      if(paint){rect(M,y,46,46,12,colors.blue);}
+      txt(String(num).padStart(2,'0'),M+10,y+8,30,21,800,colors.white,30,paint);
+      txt(title,M+61,y,CW-61,29,800,colors.ink,43,paint);
+      y+=53;
+      y+=txt(subtitle,M,y,CW,19,400,colors.muted,29,paint);
+      y+=17;
+    };
+    const question=(label,value,x,contentWidth,draw=paint)=>{
+      let height=txt(label,x,y,contentWidth,19,700,colors.ink,29,draw);
+      y+=height+9;
+      const pad=16,answerLines=textLines(value,contentWidth-pad*2,font(400,21));
+      const boxH=Math.max(74,answerLines.length*32+pad*2);
+      if(draw)rect(x,y,contentWidth,boxH,11,colors.white,colors.answer);
+      txt(value,x+pad,y+pad,contentWidth-pad*2,21,400,colors.ink,32,draw);
+      y+=boxH+20;
+    };
+    const story=(s,x,contentWidth,draw=paint)=>{
+      const pad=17;
+      const h=txt(s.story,x+pad,y+pad,contentWidth-pad*2,20,400,'#33445d',31,false)+pad*2;
+      if(draw){rect(x,y,contentWidth,h,10,colors.soft);ctx.fillStyle='#6385ef';rect(x,y,5,h,2,'#6385ef');}
+      txt(s.story,x+pad,y+pad,contentWidth-pad*2,20,400,'#33445d',31,draw);
+      y+=h+18;
+    };
+    const scenarioCard=(s,fields)=>{
+      const startY=y;
+      // first measure for white card outline; then draw contents using same coordinates.
+      function contents(draw){
+        y=startY+26;
+        const x=M+27,inner=CW-54;
+        if(draw){rect(x,y,108,35,7,'#edf1ff');}
+        txt(`TÌNH HUỐNG ${s.id}`,x+10,y+7,140,14,800,colors.blueDark,22,draw);
+        y+=47;
+        y+=txt(s.title,x,y,inner,25,750,colors.ink,36,draw)+15;
+        story(s,x,inner,draw);
+        for(const [label,value] of fields)question(label,value,x,inner,draw);
+        y+=7;
+      }
+      contents(false);
+      const endY=y;
+      if(paint){
+        rect(M,startY,CW,endY-startY,19,colors.white,colors.line);
+        contents(true);
+      }
+      y=endY+22;
+    };
+    activity(1,'Hoạt động 1 · Thám tử AI','Hai tình huống em đã lựa chọn và phân tích');
+    for(const id of state.selected){
+      const s=scenarios.find(s=>s.id===id),a=state.answers[id]||{};
+      scenarioCard(s,[
+        ['1. Theo em, tương tác với AI trong tình huống này có thể gây ra ảnh hưởng tiêu cực gì?',a.impact||''],
+        ['2. Vì sao em nghĩ như vậy? Chi tiết nào trong tình huống giúp em nhận ra điều đó?',a.proof||'']
+      ]);
+    }
+    y+=13;
+    activity(2,'Hoạt động 2 · Em làm chủ AI','Một tình huống em chọn để đề xuất cách ứng xử và rút ra bài học');
+    scenarioCard(focusScenario,[
+      ['1. Nếu là nhân vật trong tình huống, em sẽ làm gì để hạn chế ảnh hưởng tiêu cực?',state.action],
+      ['2. Vì sao em lựa chọn cách giải quyết đó?',state.reason]
+    ]);
+    const cardStart=y, px=M+27, inner=CW-54;
+    y+=27;
+    y+=txt('GÓC SUY NGẪM CỦA EM',px,y,inner,23,800,colors.blueDark,35,paint)+10;
+    question('Sau khi tìm hiểu các tình huống, em rút ra bài học gì để sử dụng AI mà vẫn bảo vệ được cảm xúc, sự tự tin và các mối quan hệ của mình?',state.lesson,px,inner);
+    y+=7;
+    const cardEnd=y;
+    if(paint){
+      // Draw border behind the content without covering text.
+      ctx.beginPath();ctx.roundRect(M,cardStart,CW,cardEnd-cardStart,19);ctx.strokeStyle=colors.line;ctx.lineWidth=2;ctx.stroke();
+    }
+    y+=36;
+    if(paint)txt('Bài làm được xuất từ phiếu thực hành AI Khối 5',M,y,CW,16,400,colors.muted,25,true);
+    return y+M+26;
+  }
+  canvas.width=W;canvas.height=1;
+  let needed=render(false);
+  if(needed>30000){alert('Bài làm quá dài để xuất thành một ảnh PNG. Em hãy rút ngắn câu trả lời.');return;}
+  canvas.height=Math.ceil(needed);
+  render(true);
+  canvas.toBlob(blob=>{
+    if(!blob){alert('Không thể tạo ảnh PNG. Em hãy thử lại.');return;}
+    const url=URL.createObjectURL(blob),link=document.createElement('a');
+    const topic='Em làm chủ tương tác với AI';
+    link.download=`${safeFilePart(state.studentClass)}_${safeFilePart(state.studentName)}_${safeFilePart(topic)}.png`;
+    link.href=url;document.body.appendChild(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),10000);
+    toast('Đã tạo ảnh PNG chứa đầy đủ bài làm của em!');
+  },'image/png');
+}
+let toastTimeout;function toast(message){const el=$('toast');el.textContent=message;el.classList.add('on');clearTimeout(toastTimeout);toastTimeout=setTimeout(()=>el.classList.remove('on'),3000)}
+render1();render2();requestAnimationFrame(resizeAllAnswers);
+</script>
+</body></html>
